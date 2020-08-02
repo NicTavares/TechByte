@@ -1,17 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-
-const blogPostSchema = new Schema({
-    title: String,
-    body: String, 
-    username: String,
-    datePosted: {
-        type: Date, 
-        default: new Date()
-    },
-    image: String
+ 
+const BlogPostSchema = new Schema({
+  title: String,
+  body: String,
+  image: String,
+  comments: [{body: String, date: {type: Date, default: new Date()}}],
+  userid: {
+    type: mongoose.Schema.Types.ObjectId, // suppose to be a valid mongodb object id. mongodb has specific ids for each doc and they have to be in a valid format
+    ref: 'User', // reference User collection 
+    required: true
+  },  
+  datePosted:{ 
+    type: Date,
+    default: new Date()
+  }
 });
 
-const blogPost = mongoose.model('blogPost', blogPostSchema);
-
-module.exports = blogPost;
+const BlogPost = mongoose.model('BlogPost',BlogPostSchema);
+module.exports = BlogPost
