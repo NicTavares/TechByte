@@ -40,8 +40,8 @@ app.use("*", (req, res, next) => {
 })
 
 
-
-mongoose.connect('mongodb+srv://Nic:2338434Ben@cluster0.vyejv.mongodb.net/TechByte', {useNewUrlParser: true});
+//Deleted the connect code
+mongoose.connect(, {useNewUrlParser: true});
 
 let port = process.env.PORT;
 if(port == null || port == "") {
